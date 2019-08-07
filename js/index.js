@@ -46,3 +46,12 @@ codeSnippetImg.setAttribute("src", siteContent["cta"]["img-src"]);
 
 let middleImg = document.getElementById("middle-img");
 middleImg.setAttribute("src", siteContent["main-content"]["middle-img-src"]);
+
+
+ navItems = (Object.values(siteContent.nav))
+navItems.pop()
+
+aElements = document.getElementsByTagName("a")
+for(var i = 0; i < aElements.length; i++){
+  aElements[i].textContent = navItems[i];
+  }
