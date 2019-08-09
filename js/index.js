@@ -37,21 +37,60 @@ const siteContent = {
   },
 };
 
-// Example: Update the img src for the logo
-let logo = document.getElementById("logo-img");
-logo.setAttribute('src', siteContent["nav"]["img-src"])
 
-let codeSnippetImg = document.getElementById("cta-img");
-codeSnippetImg.setAttribute("src", siteContent["cta"]["img-src"]);
+// gets the keys of the siteContent object
+siteContentKeys = ((Object.keys(siteContent)))
 
-let middleImg = document.getElementById("middle-img");
-middleImg.setAttribute("src", siteContent["main-content"]["middle-img-src"]);
-
-
- navItems = (Object.values(siteContent.nav))
-navItems.pop()
-
-aElements = document.getElementsByTagName("a")
-for(var i = 0; i < aElements.length; i++){
-  aElements[i].textContent = navItems[i];
+// A function that loops through each individual object key. It looks for a string that matches a key and if found pushes the value pair to a  desired array.
+let jsonToArray = function(jsonString, array){
+for (let i = 0; i < siteContentKeys.length; i++){
+  for (let j = 0; j < ((Object.keys(siteContent[(siteContentKeys[i])])).length); j++){
+      if (((Object.keys(siteContent[(siteContentKeys[i])]))[j]).includes(jsonString)) {
+          array.push((Object.values(siteContent[(siteContentKeys[i])]))[j])
+      }
+    }
   }
+}
+
+// A function that passes an array to a nodelist via .textContent
+let arrayToNodelistTextContent = function(array, nodelist){
+for (var i = 0; i < array.length; i++){
+nodelist[i].textContent = array[i];
+  }
+};
+
+// Nodelist variables
+navItemsNodelist = document.querySelectorAll("a");
+imgNodelist = document.querySelectorAll("img");
+buttonNodelist = document.querySelectorAll("button");
+h1Nodelist = document.querySelectorAll("h1");
+h4Nodelist = document.querySelectorAll("h4");
+pNodelist = document.querySelectorAll("p");
+
+// Arrays
+navItems = [];
+img = [];
+button = [];
+h1 = [];
+h4 = [];
+p = [];
+
+// invoked jsonToArray function
+jsonToArray("nav-item", navItems);
+jsonToArray("img",img);
+jsonToArray("button",button);
+jsonToArray("h1",h1);
+jsonToArray("h4",h4);
+jsonToArray("content",p);
+jsonToArray("address",p);
+jsonToArray("phone",p);
+jsonToArray("email",p);
+jsonToArray("copyright",p);
+
+// invoked functions to pass array to nodelist
+imgNodelist.forEach((image, i) => image.setAttribute('src', img[i]));
+arrayToNodelistTextContent(navItems,navItemsNodelist);
+arrayToNodelistTextContent(button,buttonNodelist);
+arrayToNodelistTextContent(h1,h1Nodelist);
+arrayToNodelistTextContent(h4,h4Nodelist);
+arrayToNodelistTextContent(p,pNodelist);
