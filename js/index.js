@@ -66,6 +66,7 @@ buttonNodelist = document.querySelectorAll("button");
 h1Nodelist = document.querySelectorAll("h1");
 h4Nodelist = document.querySelectorAll("h4");
 pNodelist = document.querySelectorAll("p");
+document.querySelectorAll('a').forEach(element => element.style.color = 'green')
 
 // Arrays
 navItems = [];
