@@ -66,7 +66,6 @@ buttonNodelist = document.querySelectorAll("button");
 h1Nodelist = document.querySelectorAll("h1");
 h4Nodelist = document.querySelectorAll("h4");
 pNodelist = document.querySelectorAll("p");
-document.querySelectorAll('a').forEach(element => element.style.color = 'green')
 
 // Arrays
 navItems = [];
@@ -95,3 +94,18 @@ arrayToNodelistTextContent(button,buttonNodelist);
 arrayToNodelistTextContent(h1,h1Nodelist);
 arrayToNodelistTextContent(h4,h4Nodelist);
 arrayToNodelistTextContent(p,pNodelist);
+
+// create an element
+let aFAQ = document.createElement("a")
+// fill that element with text
+let faqText = aFAQ.textContent = "FAQ"
+// select our navigation
+document.querySelector('nav').append(aFAQ);
+// append our created element to navigation
+
+let aLearnMore = document.createElement("a")
+let learnMoreText = aLearnMore.textContent = "Learn More"
+document.querySelector('nav').append(aLearnMore);
+
+
+document.querySelectorAll('a').forEach(element => element.style.color = 'green')
